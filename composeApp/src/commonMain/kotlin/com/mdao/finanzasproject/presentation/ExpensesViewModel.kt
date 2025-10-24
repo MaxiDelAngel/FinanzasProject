@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mdao.finanzasproject.domain.ExpenseRepository
 import com.mdao.finanzasproject.model.Expense
+import com.mdao.finanzasproject.model.ExpenseCategory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -64,4 +65,7 @@ class ExpensesViewModel(private val repo: ExpenseRepository, function: () -> Exp
         return allExpense.first { it.id == id }
     }
 
+    fun getCategories(): List<ExpenseCategory> {
+        return repo.getCategories()
+    }
 }
