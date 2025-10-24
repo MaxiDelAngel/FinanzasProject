@@ -47,11 +47,11 @@ kotlin {
 
             //Navigation
 
-            api("moe.tlaster:precompose:1.5.10")
+            api("moe.tlaster:precompose:1.6.2")
 
             //ViewModel
 
-            api("moe.tlaster:precompose-viewmodel:1.5.10")
+            api("moe.tlaster:precompose-viewmodel:1.6.2")
 
         }
         commonTest.dependencies {

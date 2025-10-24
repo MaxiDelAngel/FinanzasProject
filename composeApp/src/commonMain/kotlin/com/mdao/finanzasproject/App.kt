@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Apps
 import androidx.compose.material.icons.filled.ArrowBack
@@ -46,21 +47,21 @@ fun App() {
                     TopAppBar(
                         title = {
                             Text(
-                                text = "Dashboard",
+                                text = titleTopBar,
                                 fontSize = 25.sp,
                                 color = colors.TextColor
                             )
                         },
                         navigationIcon = {
-                            if (isEditOrAddExpenses){
+                            if (isEditOrAddExpenses) {
                                 IconButton(
                                     onClick = {
                                         navigator.popBackStack()
                                     }
-                                ){
+                                ) {
                                     Icon(
                                         modifier = Modifier.padding(start = 16.dp),
-                                        imageVector = Icons.Default.ArrowBack,
+                                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                         tint = colors.TextColor,
                                         contentDescription = "Back arrow icon"
                                     )
@@ -77,7 +78,7 @@ fun App() {
                     )
                 },
                 floatingActionButton = {
-                    if(!isEditOrAddExpenses){
+                    if (!isEditOrAddExpenses) {
                         FloatingActionButton(
                             modifier = Modifier.padding(8.dp),
                             onClick = {
@@ -86,7 +87,7 @@ fun App() {
                             shape = RoundedCornerShape(50),
                             containerColor = colors.AddIconColor,
                             contentColor = Color.White,
-                        ){
+                        ) {
                             Icon(
                                 imageVector = Icons.Default.Add,
                                 tint = Color.White,
@@ -97,7 +98,7 @@ fun App() {
                 }
 
             ) { innerPadding ->
-                NavigationWrapper(navigator)
+                NavigationWrapper(navigator, innerPadding)
             }
         }
     }
@@ -107,8 +108,9 @@ fun App() {
 fun getTitleTopAppBar(navigator: Navigator): String {
     var titleTopBar = TitleTopBarTypes.DASHBOARD
 
-    val isOnAddExpenses = navigator.currentEntry.collectAsState(null).value?.route?.route.equals("/addExpenses/{id}")
-    if (isOnAddExpenses){
+    val isOnAddExpenses =
+        navigator.currentEntry.collectAsState(null).value?.route?.route.equals("/addExpenses/{id}?")
+    if (isOnAddExpenses) {
         titleTopBar = TitleTopBarTypes.ADD_EXPENSE
     }
 
