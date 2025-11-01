@@ -3,6 +3,7 @@ package com.mdao.finanzasproject.navigation
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.runtime.getValue
@@ -18,11 +19,12 @@ import moe.tlaster.precompose.navigation.Navigator
 import moe.tlaster.precompose.navigation.path
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NavigationWrapper(navigator: Navigator, innerPadding: PaddingValues){
+fun NavigationWrapper(navigator: Navigator, innerPadding: PaddingValues) {
     val colors = getColorsTheme()
 
-    val viewModel = ExpensesViewModel(ExpenseRepoImplement(ExpenseManager)){
+    val viewModel = ExpensesViewModel(ExpenseRepoImplement(ExpenseManager)) {
         ExpensesViewModel(ExpenseRepoImplement(ExpenseManager), function = TODO())
     }
 
@@ -30,7 +32,7 @@ fun NavigationWrapper(navigator: Navigator, innerPadding: PaddingValues){
         modifier = Modifier.background(colors.BackgroundColor).padding(innerPadding),
         navigator = navigator,
         initialRoute = "/home"
-    ){
+    ) {
         scene(route = "/home") {
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
             ExpenseScreen(uiState) { expense ->
@@ -42,8 +44,8 @@ fun NavigationWrapper(navigator: Navigator, innerPadding: PaddingValues){
             val idFromPath = backStackEntry.path<Long>("id")
             val expenseToEditOrAdd = idFromPath?.let { id -> viewModel.getExpenseWithID(id) }
 
-            ExpenseDetailScreen(expenseToEdit = expenseToEditOrAdd){ expense   ->
-                if(expenseToEditOrAdd == null) {
+            ExpenseDetailScreen(expenseToEdit = expenseToEditOrAdd, categoryList = viewModel.getCategories()) { expense ->
+                if (expenseToEditOrAdd == null) {
                     viewModel.addExpense(expense)
                 } else {
                     viewModel.editExpense(expense)
