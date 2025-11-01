@@ -135,7 +135,7 @@ fun ExpenseDetailScreen(
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = colors.Purple,
                 contentColor = Color.White
-            ),
+            ),aaaa
             enabled = price != 0.0 && description.isNotEmpty()
         ) {
 
