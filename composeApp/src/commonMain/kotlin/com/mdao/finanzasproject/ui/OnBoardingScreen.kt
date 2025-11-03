@@ -76,7 +76,6 @@ fun OnboardingScreen(onFinish: () -> Unit) {
             )
         }
 
-        // Indicadores
         Row(
             horizontalArrangement = Arrangement.Center,
             modifier = Modifier.padding(top = 16.dp, bottom = 16.dp)
@@ -94,7 +93,6 @@ fun OnboardingScreen(onFinish: () -> Unit) {
             }
         }
 
-        // Botones
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween

@@ -53,6 +53,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.mdao.finanzasproject.data.TitleTopBarTypes
 import com.mdao.finanzasproject.getColorsTheme
 import com.mdao.finanzasproject.model.Expense
 import com.mdao.finanzasproject.model.ExpenseCategory
@@ -134,9 +135,13 @@ fun ExpenseDetailScreen(
                 containerColor = colors.Purple,
                 contentColor = Color.White
             ),
-            enabled = price != 0.0 && description.isNotEmpty()
+            enabled = price != 0.0 && description.isNotBlank() && expenseCategory.isNotBlank()
         ) {
-
+            expenseToEdit?.let {
+                Text(text= TitleTopBarTypes.EDIT.value)
+                return@Button
+            }
+            Text(text = TitleTopBarTypes.ADD_EXPENSE.value)
         }
     }
 

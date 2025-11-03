@@ -39,46 +39,51 @@ fun App() {
     PreComposeApp {
         AppTheme {
             val navigator = rememberNavigator()
+            val currentEntry = navigator.currentEntry.collectAsState(null).value
+            val currentRoute = currentEntry?.route?.route
+            val isOnboardingScreen = currentRoute == "/onboarding"
             val titleTopBar = getTitleTopAppBar(navigator)
             val isEditOrAddExpenses = titleTopBar != TitleTopBarTypes.DASHBOARD.value
             Scaffold(
                 modifier = Modifier.fillMaxSize(),
                 topBar = {
-                    TopAppBar(
-                        title = {
-                            Text(
-                                text = titleTopBar,
-                                fontSize = 25.sp,
-                                color = colors.TextColor
-                            )
-                        },
-                        navigationIcon = {
-                            if (isEditOrAddExpenses) {
-                                IconButton(
-                                    onClick = {
-                                        navigator.popBackStack()
+                    if (!isOnboardingScreen) {
+                        TopAppBar(
+                            title = {
+                                Text(
+                                    text = titleTopBar,
+                                    fontSize = 25.sp,
+                                    color = colors.TextColor
+                                )
+                            },
+                            navigationIcon = {
+                                if (isEditOrAddExpenses) {
+                                    IconButton(
+                                        onClick = {
+                                            navigator.popBackStack()
+                                        }
+                                    ) {
+                                        Icon(
+                                            modifier = Modifier.padding(start = 16.dp),
+                                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                            tint = colors.TextColor,
+                                            contentDescription = "Back arrow icon"
+                                        )
                                     }
-                                ) {
+                                } else {
                                     Icon(
                                         modifier = Modifier.padding(start = 16.dp),
-                                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                        imageVector = Icons.Default.Apps,
                                         tint = colors.TextColor,
-                                        contentDescription = "Back arrow icon"
+                                        contentDescription = "Dashboard icon"
                                     )
                                 }
-                            } else {
-                                Icon(
-                                    modifier = Modifier.padding(start = 16.dp),
-                                    imageVector = Icons.Default.Apps,
-                                    tint = colors.TextColor,
-                                    contentDescription = "Dashboard icon"
-                                )
                             }
-                        }
-                    )
+                        )
+                    }
                 },
                 floatingActionButton = {
-                    if (!isEditOrAddExpenses) {
+                    if (!isEditOrAddExpenses && !isOnboardingScreen) {
                         FloatingActionButton(
                             modifier = Modifier.padding(8.dp),
                             onClick = {

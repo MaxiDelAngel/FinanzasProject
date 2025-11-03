@@ -13,6 +13,7 @@ import com.mdao.finanzasproject.getColorsTheme
 import com.mdao.finanzasproject.presentation.ExpensesViewModel
 import com.mdao.finanzasproject.ui.ExpenseDetailScreen
 import com.mdao.finanzasproject.ui.ExpenseScreen
+import com.mdao.finanzasproject.ui.OnboardingScreen
 import moe.tlaster.precompose.flow.collectAsStateWithLifecycle
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.Navigator
@@ -31,8 +32,14 @@ fun NavigationWrapper(navigator: Navigator, innerPadding: PaddingValues) {
     NavHost(
         modifier = Modifier.background(colors.BackgroundColor).padding(innerPadding),
         navigator = navigator,
-        initialRoute = "/home"
+        initialRoute = "/onboarding"
     ) {
+        scene(route = "/onboarding"){
+            OnboardingScreen(onFinish = {
+                navigator.navigate("/home")
+            })
+        }
+
         scene(route = "/home") {
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
             ExpenseScreen(uiState) { expense ->
