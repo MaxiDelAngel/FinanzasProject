@@ -45,3 +45,8 @@ Usa **Compose Multiplatform** para compartir la UI. ¡Escribes el código de la 
     * `iosMain`: Código específico solo para iOS (si se necesita).
 * `/androidApp`: El proyecto "contenedor" de Android.
 * `/iosApp`: El proyecto "contenedor" de Xcode para iOS.
+
+🙌 Créditos
+
+Este proyecto fue desarrollado tomando como referencia el curso de Kotlin Multiplataforma - Curso intensivo para Android y iOS
+disponible en Udemy, el cual me sirvió como guía para comprender la arquitectura y el flujo de trabajo de Kotlin Multiplatform.
