@@ -6,7 +6,15 @@ import kotlin.test.assertEquals
 class ComposeAppCommonTest {
 
     @Test
-    fun example() {
-        assertEquals(3, 1 + 2)
+    fun myFirstTest(){ //Aprendiendo metodologia para test
+        //Give
+        val x = 5
+        val y= 10
+
+        //When
+        val result = x+y
+
+        //Then
+        assertEquals(15, result)
     }
 }
