@@ -1,16 +1,52 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# Mi App KMP 📱
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+Este es un proyecto de **Kotlin Multiplatform** (KMP) para **Android** e **iOS**.
 
-* [/iosApp](./iosApp/iosApp) contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+Usa **Compose Multiplatform** para compartir la UI. ¡Escribes el código de la UI una vez y funciona en ambas plataformas!
 
+## ✨ ¿Qué tecnologías usa?
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+* **Kotlin:** El lenguaje principal para todo.
+* **Compose Multiplatform:** Para hacer la UI compartida.
+* **Coroutines:** Para manejar cosas en segundo plano (como llamadas a internet).
+* **[Ktor/Retrofit]:** Para conectarse a una API. (Proximamente)
+* **[Koin/Hilt]:** Para inyección de dependencias. (Proximamente)
+
+---
+
+## 🚀 Cómo ejecutar el proyecto
+
+### Requisitos
+
+* Android Studio (para KMP)
+* Xcode (para la app de iOS)
+
+### ▶️ En Android
+
+1.  Abre el proyecto en Android Studio.
+2.  Espera que Gradle termine de sincronizar.
+3.  Elige **`androidApp`** en las configuraciones de ejecución.
+4.  Selecciona tu emulador o teléfono.
+5.  ¡Dale a "Run" (▶️)!
+
+### ▶️ En iOS
+
+1.  Abre el archivo `iosApp.xcworkspace` (o `.xcodeproj`) dentro de la carpeta `/iosApp` con Xcode.
+2.  Elige un simulador (ej. iPhone 15).
+3.  ¡Dale a "Run" (▶️) en Xcode!
+
+---
+
+## 📂 Estructura de Carpetas
+
+* `/composeApp`: Aquí está **todo el código compartido**.
+    * `commonMain`: La lógica y las pantallas (Compose) que usan Android e iOS.
+    * `androidMain`: Código específico solo para Android (si se necesita).
+    * `iosMain`: Código específico solo para iOS (si se necesita).
+* `/androidApp`: El proyecto "contenedor" de Android.
+* `/iosApp`: El proyecto "contenedor" de Xcode para iOS.
+
+🙌 Créditos
+
+Este proyecto fue desarrollado tomando como referencia el curso de Kotlin Multiplataforma - Curso intensivo para Android y iOS
+disponible en Udemy, el cual me sirvió como guía para comprender la arquitectura y el flujo de trabajo de Kotlin Multiplatform.
